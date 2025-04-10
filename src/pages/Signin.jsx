@@ -86,7 +86,7 @@ const SignIn = () => {
             fullWidth
             variant="outlined"
             value={email}
-            placeholder="yourname@example.com"
+            placeholder="demo@example.com"
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
@@ -94,7 +94,8 @@ const SignIn = () => {
             type={showPassword ? 'text' : 'password'}
             fullWidth
             variant="outlined"
-            value={password}
+            placeholder='demo123'
+            value={password }
             onChange={(e) => setPassword(e.target.value)}
             InputProps={{
               endAdornment: (
