@@ -150,17 +150,29 @@ const Dashboard = () => {
   // Handle logout
   const handleLogout = async () => {
     setIsLoggingOut(true);
+    
+    // Show loading toast
+    const loadingToast = toast.loading('Logging out...');
+
     try {
-      // Clear tasks before logout
-      setTasks([]);
-      localStorage.removeItem('tasks');
+      // Add artificial delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
+      // Clear tasks and logout
+      setTasks([]);
       dispatch(logout());
-      toast.success('Logged out successfully');
-      navigate('/', { replace: true });
+
+      // Dismiss loading toast and show success
+      toast.dismiss(loadingToast);
+      toast.success('Logged out successfully!');
+
+      // Navigate after toast
+      setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 500);
+
     } catch (error) {
-      console.error('Error during logout:', error);
-      toast.error('Logout failed');
+      toast.error('Error logging out');
     } finally {
       setIsLoggingOut(false);
     }
